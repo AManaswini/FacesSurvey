@@ -1,0 +1,22 @@
+.btn{
+    float:right;
+}
+
+img:hover{
+    cursor: pointer;
+}
+
+textarea{
+    width: 400px;
+}
+
+nzTitle{
+    height: 100px;
+}
+
+#descb{
+    display: flex;margin-left: auto; margin-right: auto;
+    flex-direction: column;
+    padding-left: 30%;
+
+}

@@ -1,0 +1,43 @@
+.btn{
+    float:right;
+}
+
+img:hover{
+    cursor: pointer;
+}
+
+textarea{
+    width: 400px;
+}
+
+nzTitle{
+    height: 100px;
+}
+
+#descb{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    display: flex;margin-left: auto; margin-right: auto;
+    flex-direction: column;
+    padding-left: 30%;
+
+
+}
+
+.timer{
+    float: right;
+    font:bolder;
+    font-size: x-large;
+}
+
+.time{
+    float: right;
+    font:bolder;
+    font-size: x-large;
+    display: flex;
+    flex-direction: row;
+    margin-top: 1vh;
+
+}

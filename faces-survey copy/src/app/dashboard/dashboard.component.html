@@ -1,0 +1,119 @@
+<div *ngIf="count && is_valid_login">
+    <div nz-row nzJustify="space-around" nzAlign="middle">
+        <div nz-col nzSpan="5" style="padding-top: 1%">
+            <nz-card>
+                <nz-statistic [nzValue]="(count | number)!" [nzTitle]="'Total Surveys'"></nz-statistic>
+            </nz-card>
+        </div>
+        <div nz-col nzSpan="5" style="padding-top: 1%">
+            <nz-card>
+                <nz-statistic [nzValue]="(count24 | number)!" [nzTitle]="'Surveys last 24hrs'"></nz-statistic>
+            </nz-card>
+        </div>
+        <div nz-col nzSpan="5" style="padding-top: 1%">
+            <nz-card>
+                <nz-statistic [nzValue]="(count_hits | number)!" [nzTitle]="'Total hits'"></nz-statistic>
+            </nz-card>
+        </div>
+        <div nz-col nzSpan="5" style="padding-top: 1%">
+            <nz-card>
+                <nz-statistic [nzValue]="latest_date" [nzTitle]="'Last Survey Date'"></nz-statistic>
+            </nz-card>
+        </div>
+    </div>
+    <br>
+    <div nz-row nzJustify="center">
+        <div nz-col nzSpan="22">
+            <nz-card>
+                <div nz-row nzAlign="middle">
+                    <div nz-col nzSpan="6">
+                        <button nz-button nzType="primary" [nzLoading]="isLoadingCSV"
+                        (click)="img_csv_update()">Update CSV from AWS</button>
+                    </div>
+                    <div nz-col nzSpan="6">
+                        <button nz-button nzType="primary" [nzLoading]="isLoadingImages"
+                        (click)="img_update()">Update Images from AWS</button>
+                    </div>
+                    <div nz-col nzSpan="6" *ngIf="updateimg_response">
+                        {{updateimg_response}}
+                    </div>
+                     <div nz-col nzSpan="6" *ngIf="updatecsv_response">
+                        {{updatecsv_response}}
+                    </div>
+                </div>
+                <br>
+                <div nz-row nzAlign="middle">
+                    <div nz-col nzSpan="6">
+                        <button nz-button nzType="primary" (click)="download()">Download Release 1 report</button>
+                    </div>
+                    <div nz-col nzSpan="6">
+                        <button nz-button nzType="primary" (click)="download2()">Download Release 2 report</button>
+                    </div>
+                    <div nz-col nzSpan="6">
+                        <button nz-button nzType="primary" (click)="download3()">Download Release 3 report</button>
+                    </div>
+                </div>
+            </nz-card>
+        </div>
+    </div>
+    <br>
+    <div nz-row nzJustify="center">
+        <div nz-col nzSpan="22">
+            <div *ngIf="surveyData">
+                <nz-table
+                    #virtualTable
+                    [nzBordered]="true"
+                    [nzVirtualItemSize]="54"
+                    [nzData]="surveyData"
+                    [nzVirtualForTrackBy]="trackByIndex"
+                    [nzFrontPagination]="false"
+                    [nzShowPagination]="false"
+                    [nzScroll]="{ x: '1000px', y: '300px' }"
+                >
+                <thead>
+                    <tr>
+                    <th>Score</th>
+                    <th>Comments</th>
+                    <th>Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of surveyData">
+                    <td>{{ data.score }}</td>
+                    <td>{{ data.comments }}</td>
+                    <td>{{ data.code }}</td>
+                    </tr>
+                </tbody>
+                </nz-table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
+
+<nz-modal
+      [(nzVisible)]="isVisible"
+      [nzTitle]="modalTitle"
+      [nzContent]="modalContent"
+      [nzFooter]="modalFooter"
+      [nzWidth]="600"
+    >
+    <ng-template #modalTitle>Please enter password:</ng-template>
+
+    <ng-template #modalContent>
+        <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please enter password!">
+                <input formControlName="password" nz-input type="password" placeholder="" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control>
+            <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+            </nz-form-control>
+        </nz-form-item>
+        </form>
+    </ng-template>
+    <ng-template #modalFooter></ng-template>
+</nz-modal>

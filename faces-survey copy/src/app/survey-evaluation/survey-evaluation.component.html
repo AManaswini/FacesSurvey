@@ -1,0 +1,188 @@
+<div class="note" *ngIf="minitraining_page">
+    <div nz-row nzJustify="center">
+        <div nz-col nzSpan="22">
+            <nz-card nzTitle="Evaluation">
+                <ul>You will now complete the evaluation task. You have 5 minutes to complete your choices. You will be given a completion code after the time limit has finished. For each pair, select the individual you believe should be kept in jail (the individual more likely to be arrested again before their trial). You will not be given any feedback on your decision.                </ul>
+            </nz-card>
+        </div>
+    </div>
+    <br>
+    <div nz-row nzJustify="center">
+        <div nz-col nzSpan="20">
+            <div nz-row class="btn">
+                <button nz-button nzType="primary" (click)="confirm()">Start Survey<i nz-icon nzType="right"></i></button>
+            </div>
+        </div>
+    </div>
+    <div style="padding-top: 20px"></div>
+</div>
+<div class="note" *ngIf="!minitraining_page">
+    <div *ngIf="!img_fetched">
+        <div nz-row nzJustify="center" nzAlign="middle">
+            <div nz-col nzSpan="2" style="padding-top: 15%">
+                <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+            </div>
+        </div>
+    </div>
+    <div class="time">
+        <p >Time left - </p>
+        <p class="timer" id = "timer" #timer>5:00</p>
+    </div>
+    <div *ngIf="img_fetched">
+        <div nz-row nzJustify="center">
+            <div nz-col nzSpan="20" style="padding-top: 1%">
+                <div>
+                    <nz-card>
+                        <div nz-row>
+                            <h3>Below is a pair of arrest records. Your goal for this exercise is to decide who should be released or detained. You must select the individual you believe should be kept in jail, according to how likely they are to be re-arrested before their trial.    
+                                <b>Make your selection as to which person should be kept in jail.
+                                </b>
+                            </h3>
+                        </div>
+                        <br>
+                        <div nz-row>
+                            <div nz-col nzSpan="12" *ngIf="swap_images_flag">
+                                <img src = "{{img_list[img_index][0].url_b}}"
+                                    height="300" 
+                                    style="display: block; margin-left: auto; margin-right: auto;" 
+                                    id="b"
+                                    (click)="this.imgclick($event)" 
+                                    [style.border]="borders['b']">
+                                    <div id="descb">
+                                    <h4>Prior record:{{img_list[img_index][0].desc_b.Prior_record}} </h4>
+                                    <h4>Number of prior felonies:{{img_list[img_index][0].desc_b.Number_of_prior_felonies}}</h4>
+                                    <h4>Charge type:{{img_list[img_index][0].desc_b.Charge_type}} </h4>
+                                    <h4>Current charges:{{img_list[img_index][0].desc_b.Current_charges}}</h4>
+                                    <h4>Age:{{img_list[img_index][0].desc_b.Age}} </h4>
+                                    <h4>Race:{{img_list[img_index][0].desc_b.Race}}</h4>
+                                    </div>
+                            </div>
+                            <div nz-col nzSpan="12">
+                                <img src = "{{img_list[img_index][0].url_a}}"
+                                    height="300" 
+                                    style="display: block; margin-left: auto; margin-right: auto;" 
+                                    id="a"
+                                    (click)="this.imgclick($event)" 
+                                    [style.border]="borders['a']">
+                                    <div id="descb">
+                                        <h4>Prior record:{{img_list[img_index][0].desc_a.Prior_record}} </h4>
+                                        <h4>Number of prior felonies:{{img_list[img_index][0].desc_a.Number_of_prior_felonies}}</h4>
+                                        <h4>Charge type:{{img_list[img_index][0].desc_a.Charge_type}} </h4>
+                                        <h4>Current charges:{{img_list[img_index][0].desc_a.Current_charges}}</h4>
+                                        <h4>Age:{{img_list[img_index][0].desc_a.Age}} </h4>
+                                        <h4>Race:{{img_list[img_index][0].desc_a.Race}}</h4>
+                                    </div>
+                            </div>
+                            
+                            <div nz-col nzSpan="12" *ngIf="!swap_images_flag">
+                                <img src = "{{img_list[img_index][0].url_b}}"
+                                    height="300" 
+                                    style="display: block; margin-left: auto; margin-right: auto;" 
+                                    id="b"
+                                    (click)="this.imgclick($event)" 
+                                    [style.border]="borders['b']">
+                                <div id="descb">
+                                    <h4>Prior record:{{img_list[img_index][0].desc_b.Prior_record}} </h4>
+                                    <h4>Number of prior felonies:{{img_list[img_index][0].desc_b.Number_of_prior_felonies}}</h4>
+                                    <h4>Charge type:{{img_list[img_index][0].desc_b.Charge_type}} </h4>
+                                    <h4>Current charges:{{img_list[img_index][0].desc_b.Current_charges}}</h4>
+                                    <h4>Age:{{img_list[img_index][0].desc_b.Age}} </h4>
+                                    <h4>Race:{{img_list[img_index][0].desc_b.Race}}</h4>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </nz-card>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div nz-row nzJustify="center">
+            <div nz-col nzSpan="2">
+                <div nz-row class="btn">
+                    <button nz-button 
+                            nzType="primary" 
+                            nzDanger 
+                            nz-popconfirm
+                            nzOkText="Yes, Quit"
+                            nzPopconfirmTitle="Are you sure you want to Quit the Survey?"
+                            (nzOnConfirm)="exit()">
+                            Quit Survey</button>
+                </div>
+            </div>
+            <!-- <div nz-row class="btn">
+                <button  nz-button="isdisabled" nzType="primary"  class="download" (click)="download()">Download<i nz-icon nzType="right"></i></button>
+            </div> -->
+            <!--<div nz-col nzSpan="2"></div>
+            <div nz-col nzSpan="2">
+                <div nz-row class="btn" *ngIf="img_clicked_flag">
+                    <button nz-button 
+                            nzType="primary" 
+                            nz-popconfirm
+                            nzOkText="Yes, Submit"
+                            nzPopconfirmTitle="Are you sure you want to Submit the Survey?"
+                            (nzOnConfirm)="submit()">
+                            Submit Survey</button>
+                </div>
+            </div>-->
+        </div>
+        <div nz-row nzJustify="center">
+            <div nz-col nzSpan="20">
+                <h4 style="color: grey;">
+                    <!-- <i><b>What is the judge’s decision to jail? </b><br>
+                        A person arrested in the United States faces a judge within 24 hours of arrest. That judge makes an important decision. Where will this person wait for trial? Must they sit in jail? Or can they go home? Whether a person is jailed depends on the risk that person poses: would they flee? Would they commit a crime?<br>
+                    </i>
+                    <br>
+                    <i><b>What is an arrest record?</b><br>
+                        This includes information about the person being arrested, what they were arrested for, when they were arrested, and their mugshot. A judge uses this information when deciding whether to jail the individual.<br>
+                    </i>
+                    <br>
+                    <i><b>What is the statistical risk?</b><br>
+                        This is a risk determined by statistical summaries of judge decisions to jail from within the United States.
+                    </i> -->
+                    <i><b>Who should be kept in jail?</b><br>
+                        The individual more likely to be re-arrested before their trial should be kept in jail. The individual less likely to be re-arrested should be released.
+                        </i>
+                        <hr>
+                        <i><b>What is the decision to jail?</b><br>
+                            A person arrested in the United States faces a judge within 24 hours of arrest. That judge makes an important decision. Where will this person wait for trial? Must they sit in jail? Or can they go home? Whether a person is jailed depends on the risk that person poses: would they flee? Would they commit a crime?
+                        </i> 
+                        <hr>
+                        <i><b>What is an arrest record?</b><br>
+                            This includes information about the person being arrested, what they were arrested for, when they were arrested, and their mugshot. You may use this information when deciding whether to jail the individual.Note:
+                            <ul style="padding-left: 0;margin: 0;">•	‘Prior record’ is true if the individual has been convicted of a felony crime (relatively more serious) or misdemeanor crime (relatively less serious) in the past</ul>
+                            <ul style="padding-left: 0;margin: 0;">•	‘Number of prior felonies’ is the number of felony crimes (relatively more serious crimes) the individual has been convicted of in the past</ul>
+                            <ul style="padding-left: 0;margin: 0;">•   ‘Charge type’ is a general description of the most severe charge on the current arrest</ul>
+                            <ul style="padding-left: 0;margin: 0;">•   ‘Current charges’  lists all of the current charges</ul>
+                        </i> 
+                </h4>
+            </div>
+        </div>
+    </div>
+    <nz-modal
+        [(nzVisible)]="isVisible"
+        [nzTitle]="modalTitle"
+        [nzContent]="modalContent"
+        [nzFooter]="modalFooter"
+        (nzOnCancel)="handleCancel()"
+        [nzWidth]="600"
+        >
+        <ng-template #modalTitle>What do you think makes an image more likely to be the correct answer? Please try to be descriptive. For example, 'long nose' is better than 'nose'.</ng-template>
+
+        <ng-template #modalContent>
+            <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your comments!">
+                    <textarea formControlName="comment" nz-input rows="5" placeholder=""></textarea>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+                </nz-form-control>
+            </nz-form-item>
+            </form>
+        </ng-template>
+        <ng-template #modalFooter></ng-template>
+    </nz-modal>
+</div>

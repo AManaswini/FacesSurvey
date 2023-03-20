@@ -1,0 +1,22 @@
+<div nz-row nzJustify="center">
+    <div nz-col nzSpan="20">
+        <nz-result
+            nzStatus="success"
+            nzTitle="Thank you for participating in the survey!"
+            nzSubTitle=""
+            >
+            <div nz-result-extra>
+                <h2>Here is the completion code to copy into Prolific:
+                    {{code}} <i nz-icon nzType="copy" nzTheme="outline" (click)="copyText()"></i></h2>
+                <br>
+                <a href="https://www.chicagobooth.edu/research/center-for-applied-artificial-intelligence"
+                    target="blank">
+                    <button nz-button nzType="primary">Visit CAAI Site</button>
+                </a>
+                <a href="/home">
+                    <button nz-button nzType="primary">Take Survey again</button>
+                </a>
+            </div>
+        </nz-result>
+    </div>
+</div>

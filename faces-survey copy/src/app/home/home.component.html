@@ -1,0 +1,157 @@
+<div class="note" *ngIf="consent_page">
+    <div nz-row nzJustify="center">
+        <div nz-col nzSpan="22">
+            <nz-card nzTitle="Consent for Participation in Research study">
+                <ul><b>Study Title:</b> AI and Judges </ul>
+                <ul><b>Principal Investigator:</b> Dr. Jens Ludwig </ul>
+                <ul><b>IRB Study Number:</b> IRB20-0917 </ul>
+                <ul><b>DESCRIPTION:</b> We are researchers at the University of Chicago doing a research study about bias
+                    in the judicial system. In this study, you will be asked to give some ratings on the presence of
+                    certain facial features. Participation for each photo should take about 1 minute, and you can
+                    continue for as long as you are comfortable.</ul>
+                <ul><b>RISKS and BENEFITS:</b> The risks to your participation in this online study are those associated with
+                    basic computer tasks, including boredom, fatigue, mild stress, or breach of confidentiality. The
+                    only benefit to you is the learning experience from participating in a research study. The benefit
+                    to society is the contribution to scientific knowledge. The images you will be shown are mugshots
+                    from North Carolina, which may be upsetting to some, you may exit the study at any point if you
+                    feel uncomfortable. </ul>
+                <ul><b>COMPENSATION:</b> You will be rewarded the amount you were informed when you signed up for
+                    this HIT upon completion of this survey, approximately $0.50 per 4 minutes of work (Federal
+                    minimum wage). In the event of an incomplete HIT, you must contact the research team and
+                    compensation will be determined based on what was completed and at the researchers'
+                    discretion.</ul>
+                <ul><b><i>PLEASE NOTE: This study contains a number of checks to make sure that participants are
+                    finishing the tasks honestly and completely. As long as you read the instructions and complete
+                    the tasks, your HIT will be approved. If you fail these checks, your HIT will be rejected.</i></b> </ul>
+                <ul><b>CONFIDENTIALITY:</b> Your Mechanical Turk Worker ID will be used to distribute payment to you but
+                    will not be stored with the research data we collect from you. Please be aware that your MTurk
+                    Worker ID can potentially be linked to information about you on your Amazon public profile page,
+                    depending on the settings you have for your Amazon profile. We will not be accessing any
+                    personally identifying information about you that you may have put on your Amazon public
+                    profile page.</ul>
+                <ul>Any reports and presentations about the findings from this study will not include your name or
+                    any other information that could identify you. We may share the data we collect in this study
+                    with other researchers doing future studies or on public platform (e.g., OSF or GitHub) – if we
+                    share your data, we will not include information that could identify you.</ul>
+                <ul><b>SUBJECT’S RIGHTS:</b> Your participation is voluntary. You may stop participating at any time by
+                    closing the browser window or the program to withdraw from the study. Partial data will not be
+                    analyzed.</ul>
+                <ul>For additional questions about this research, you may contact: </ul>
+                <ul style="padding-left:50px;"><b><i>James Ross, University of Chicago Urban Labs (james.ross@chicagobooth.edu)</i> </b></ul>
+                <ul>For questions about your rights as a research participant, you may contact:</ul>
+                <ul style="padding-left:50px;"><b><i>The Social & Behavioral Sciences Institutional Review Board, University of Chicago Phone:
+                    (773) 834-7835; E-mail: sbs-irb@uchicago.edu</i></b></ul>
+                <ul><b>Consent:</b></ul>
+                <ul>Participation is voluntary. Refusal to participate or withdrawing from the research will involve no penalty or loss of benefits to which you might otherwise be entitled.</ul>
+                <ul>By clicking “Agree” below, you confirm that you have read the consent form, are at least 18 years old, and agree to participate in the research. Please print or save a copy of this page for your records. If you do not agree to participate in the research then you will be exited from the study.
+                </ul>
+                <!-- <form>
+                    <input type="radio" name="Consent" [(ngModel)]="button1" [ngModelOptions]="{ standalone: true }">
+                    I agree to participate in the research
+                    <br>
+                    <input type="radio" name="Consent" [(ngModel)]="button2" [ngModelOptions]="{ standalone: true }">
+                    I do NOT agree to participate in the research
+                    <br>
+                </form> -->
+                <!-- <ul><label nz-radio name="Consent" [(ngModel)]="button1">
+                    I agree to participate in the research
+                </label></ul>
+                <ul><label nz-radio name="Consent" [(ngModel)]="button2">
+                    I do NOT agree to participate in the research
+                </label></ul> -->
+                <ul><input name="consent"  type="radio"  (click)="button11()">
+                I agree to participate in the research
+                </ul>
+                <ul>
+                <input name="consent"  type="radio" (click)="button12()">
+                I DO not agree to participate in the research
+                </ul>
+                <br>
+                
+            </nz-card>
+        </div>
+    </div>
+    <br>
+    <div nz-row nzJustify="center" *ngIf="button1 ||button2">
+        <div nz-col nzSpan="20">
+            <div nz-row class="btn">
+                <button nz-button nzType="primary" (click)="instructions()">Continue<i nz-icon nzType="right"></i></button>
+            </div>
+        </div>
+    </div>
+    <!-- <div nz-row nzJustify="center" *ngIf="button2">
+        <div nz-col nzSpan="20">
+            end works
+        </div>
+    </div> -->
+    <!-- <div *ngIf="button2">
+        <div nz-row nzJustify="center">
+            <div nz-col nzSpan="22">
+                <nz-card>
+                    End works!!
+                </nz-card>
+            </div>
+        </div> -->
+    <div style="padding-top: 20px"></div>
+</div>
+<div *ngIf="!consent_page">
+    <div *ngIf="button1">
+    <div nz-row nzJustify="center">
+        <div nz-col nzSpan="22">
+            <nz-card nzTitle="Instructions">
+                <!--<ul>In the following survey, you will be shown a pair of photos which appear similar, but may have some minor differences. You will be asked to select an image by clicking on it. After selecting the image, you will be given feedback to tell if the selection was correct or incorrect. Remember that <b>you are given a bonus for correct selections.</b></ul>-->
+                <!-- <ul>A person arrested in the United States faces a judge within 24 hours of arrest. That judge makes an important decision about where this person will wait for trial. Must they sit in jail? Or can they go home? Whether a person is jailed depends on the risk that person poses: would they flee? Would they commit a crime?</ul> -->
+                <!-- <ul>A person arrested in the United States faces a judge within 24 hours of arrest. That judge makes an important decision about where this person will wait for trial. Must they sit in jail? Or can they go home? Whether a person is jailed depends on the risk that person poses: would they flee? Would they commit a crime?
+                </ul> -->
+                <ul>A person arrested in the United States faces a judge within 24 hours of arrest. That judge makes an important decision about where this person will wait for trial. Must they sit in jail? Or can they go home? Whether a person is jailed by law is supposed to depend on the risk that person poses: Would they commit a crime?
+                </ul>
+                <!-- <ul>Your goal for this exercise is to understand what influences judge decisions to jail. To do that, you will be shown a pair of arrest records. One of these individuals was kept in jail by the judge, the other was released. You must select the candidate you believe has a higher statistical risk of being kept in jail.</ul> -->
+                <!-- <ul>Your goal for this exercise is to decide who should be released or detained. To do that, you will be shown a pair of arrest records, including some information about the person and an arrest mugshot. You must select the individual you believe should be kept in jail, according to how likely they are to be re-arrested before their trial.
+                </ul> -->
+                <ul>
+                    Your goal for this exercise is to decide who should be released or detained. To do that, you will be shown a pair of arrest records, including some information about the person and an arrest mugshot. You must select the individual you believe should be kept in jail, according to how likely they are to be re-arrested before their trial.
+                </ul>
+                <!-- <ul>The first 15 choices serve as a training period. Each of the arrest records was seen by an actual judge. The correct response is determined by whether a judge decided to keep that individual in jail. For these choices, after making your selection, you will be given feedback to tell if the selection was correct or incorrect.</ul> -->
+                <!-- <ul>The first 15 choices serve as a training period. Each of the arrest records was seen by an actual judge. For these choices, after making your selection, you will be given feedback to tell if the selection was the same or different to the judge.
+                </ul> -->
+                <!-- <ul>Your next 35 choices serve as an evaluation period. Each of these records has a statistically determined risk of being kept in jail by a judge. The correct response is determined by the larger statistical risk. For these choices, after making your selection, you will not be given any feedback to tell if the selection was correct or incorrect.</ul> -->
+                <!-- <ul>Your next 35 choices serve as an evaluation period. For these choices, after making your selection, you will not be given any feedback about the selection.
+                </ul> -->
+                <ul>Your first 15 choices serve as a training period. For these choices, after making your selection, you will be given feedback to tell if you picked the riskier defendant. There is no time limit for the training period.
+                </ul>
+                <ul>You will then enter an evaluation period. For the evaluation period, you can make up to 45 choices, with a time limit of 5 minutes. After the time limit has expired, your survey will end, and you will be given a completion code. If you do not complete all choices, you will still be given a completion code. For these choices, after making your selection, you will not be given any feedback about the selection</ul>
+                <ul><b>In addition:</b></ul>
+                <!-- <ul>•	You will receive a bonus for every correct answer during the evaluation period.</ul> -->
+                <ul>•	The exact pay structure for this task is presented in your Prolific assignment.</ul>
+                <ul>•	Do not use the forward, back, or refresh buttons during this survey.</ul>
+                <!-- <ul>•   You must copy the code given to you at the end of the survey and paste this into Prolific, so
+                    that we can compensate you for your correct responses.</ul> -->
+                <ul>•	You must copy the code given to you at the end of the survey and paste this into Prolific, so that we can compensate you for your correct responses.
+                </ul>
+                <!--<ul>•   You will be given some training examples to begin with. After this, you will have a mix of training examples and more challenging examples. You will receive the bonus for correct answers on either type, but you are only given feedback on the training images.</ul>-->
+            </nz-card>
+        </div>
+    </div>
+</div>
+    <br>
+    <div *ngIf="!consent_page">
+        <div *ngIf="button2">
+            <div nz-row nzJustify="center">
+                <div nz-col nzSpan="22">
+                    <nz-card>
+                        End works!!
+                    </nz-card>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div nz-row nzJustify="center" *ngIf="button1">
+        <div nz-col nzSpan="20">
+            <div nz-row class="btn">
+                <button nz-button nzType="primary" (click)="confirm()">Next<i nz-icon nzType="right"></i></button>
+            </div>
+        </div>
+    </div>
+    <div style="padding-top: 20px"></div>
+</div>
